@@ -3,6 +3,7 @@ package com.service;
 import com.github.pagehelper.Page;
 import com.pojo.PhyAdmin;
 import com.util.ResponseDTO;
+import com.vo.ChangePwdVo;
 import com.vo.LoginVo;
 import com.vo.PageVo;
 
@@ -18,4 +19,5 @@ public interface AdminService {
     ResponseDTO addAdmin(PhyAdmin admin);
     ResponseDTO editAdmin(PhyAdmin admin);
     ResponseDTO getAdminOtherInfo(int roleId);
+    ResponseDTO changePwd(ChangePwdVo vo);
 }

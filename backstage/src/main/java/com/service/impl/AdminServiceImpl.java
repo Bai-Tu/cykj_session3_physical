@@ -13,6 +13,7 @@ import com.util.JwtUtil;
 import com.util.ListInTree;
 import com.util.Md5;
 import com.util.ResponseDTO;
+import com.vo.ChangePwdVo;
 import com.vo.LoginVo;
 import com.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +108,22 @@ public class AdminServiceImpl implements AdminService {
             return ResponseDTO.success();
         }else {
             return ResponseDTO.fail();
+        }
+    }
+
+    @Override
+    public ResponseDTO changePwd(ChangePwdVo vo) {
+        PhyAdmin phyAdmin = mapper.selectByPrimaryKey(vo.getId());
+        String oldEncrypted = Md5.getEncrypted(vo.getOldPwd());
+        String encrypted = Md5.getEncrypted(vo.getNewPwd());
+        if (phyAdmin.getAdminPassword().equals(oldEncrypted)){
+            PhyAdmin newAdmin = new PhyAdmin();
+            newAdmin.setAdminId(vo.getId());
+            newAdmin.setAdminPassword(encrypted);
+            mapper.updateByPrimaryKeySelective(newAdmin);
+            return ResponseDTO.success();
+        }else {
+            return new ResponseDTO(-2,"旧密码错误",null);
         }
 
     }

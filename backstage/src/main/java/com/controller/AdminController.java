@@ -3,6 +3,7 @@ package com.controller;
 import com.pojo.PhyAdmin;
 import com.service.AdminService;
 import com.util.ResponseDTO;
+import com.vo.ChangePwdVo;
 import com.vo.LoginVo;
 import com.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,13 @@ public class AdminController {
     @RequestMapping("/getAdminOtherInfo")
     public ResponseDTO getAdminOtherInfo(@RequestBody PhyAdmin role){
         ResponseDTO responseDTO = service.getAdminOtherInfo(role.getAdminRoleId());
+        return responseDTO;
+    }
+
+    @ResponseBody
+    @RequestMapping("/changePwd")
+    public ResponseDTO changePwd(@RequestBody ChangePwdVo vo){
+        ResponseDTO responseDTO = service.changePwd(vo);
         return responseDTO;
     }
 

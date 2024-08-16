@@ -6,9 +6,9 @@
         <artifactId>cykj_physical</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>backstage</artifactId>
+    <artifactId>frontstage1</artifactId>
     <packaging>war</packaging>
-    <name>backstage Maven Webapp</name>
+    <name>frontstage1 Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -24,6 +24,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>backstage</finalName>
+        <finalName>frontstage1</finalName>
     </build>
 </project>
