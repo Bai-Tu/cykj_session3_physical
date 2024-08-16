@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhyConclutionMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PhyConclution">
+    <!--@mbg.generated-->
+    <!--@Table phy_conclution-->
+    <id column="conclution_id" jdbcType="INTEGER" property="conclutionId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="conclution_content" jdbcType="VARCHAR" property="conclutionContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    conclution_id, order_number, conclution_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from phy_conclution
+    where conclution_id = #{conclutionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from phy_conclution
+    where conclution_id = #{conclutionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="conclution_id" keyProperty="conclutionId" parameterType="com.pojo.PhyConclution" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_conclution (order_number, conclution_content)
+    values (#{orderNumber,jdbcType=VARCHAR}, #{conclutionContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="conclution_id" keyProperty="conclutionId" parameterType="com.pojo.PhyConclution" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_conclution
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="conclutionContent != null">
+        conclution_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="conclutionContent != null">
+        #{conclutionContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PhyConclution">
+    <!--@mbg.generated-->
+    update phy_conclution
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="conclutionContent != null">
+        conclution_content = #{conclutionContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where conclution_id = #{conclutionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PhyConclution">
+    <!--@mbg.generated-->
+    update phy_conclution
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+      conclution_content = #{conclutionContent,jdbcType=VARCHAR}
+    where conclution_id = #{conclutionId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getConclutionByOrderNumber" resultMap="BaseResultMap">
+    select * from phy_conclution where order_number = #{number,jdbcType=VARCHAR}
+    </select>
+
+  <update id="updateByOrderNumber">
+    update phy_conclution set conclution_content = #{conclutionContent,jdbcType=VARCHAR} where order_number = #{orderNumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

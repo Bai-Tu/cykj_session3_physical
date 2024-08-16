@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhyBudgetFlowMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PhyBudgetFlow">
+    <!--@mbg.generated-->
+    <!--@Table phy_budget_flow-->
+    <id column="budget_flow_id" jdbcType="INTEGER" property="budgetFlowId" />
+    <result column="patient_id" jdbcType="INTEGER" property="patientId" />
+    <result column="editting_budget" jdbcType="VARCHAR" property="edittingBudget" />
+    <result column="budget_flow_create_time" jdbcType="TIMESTAMP" property="budgetFlowCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    budget_flow_id, patient_id, editting_budget, budget_flow_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from phy_budget_flow
+    where budget_flow_id = #{budgetFlowId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from phy_budget_flow
+    where budget_flow_id = #{budgetFlowId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.PhyBudgetFlow">
+    <!--@mbg.generated-->
+    insert into phy_budget_flow (budget_flow_id, patient_id, editting_budget, 
+      budget_flow_create_time)
+    values (#{budgetFlowId,jdbcType=INTEGER}, #{patientId,jdbcType=INTEGER}, #{edittingBudget,jdbcType=VARCHAR}, 
+      #{budgetFlowCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.PhyBudgetFlow">
+    <!--@mbg.generated-->
+    insert into phy_budget_flow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="budgetFlowId != null">
+        budget_flow_id,
+      </if>
+      <if test="patientId != null">
+        patient_id,
+      </if>
+      <if test="edittingBudget != null">
+        editting_budget,
+      </if>
+      <if test="budgetFlowCreateTime != null">
+        budget_flow_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="budgetFlowId != null">
+        #{budgetFlowId,jdbcType=INTEGER},
+      </if>
+      <if test="patientId != null">
+        #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="edittingBudget != null">
+        #{edittingBudget,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetFlowCreateTime != null">
+        #{budgetFlowCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PhyBudgetFlow">
+    <!--@mbg.generated-->
+    update phy_budget_flow
+    <set>
+      <if test="patientId != null">
+        patient_id = #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="edittingBudget != null">
+        editting_budget = #{edittingBudget,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetFlowCreateTime != null">
+        budget_flow_create_time = #{budgetFlowCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where budget_flow_id = #{budgetFlowId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PhyBudgetFlow">
+    <!--@mbg.generated-->
+    update phy_budget_flow
+    set patient_id = #{patientId,jdbcType=INTEGER},
+      editting_budget = #{edittingBudget,jdbcType=VARCHAR},
+      budget_flow_create_time = #{budgetFlowCreateTime,jdbcType=TIMESTAMP}
+    where budget_flow_id = #{budgetFlowId,jdbcType=INTEGER}
+  </update>
+</mapper>

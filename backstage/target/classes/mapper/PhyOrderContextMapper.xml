@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhyOrderContextMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PhyOrderContext">
+    <!--@mbg.generated-->
+    <!--@Table phy_order_context-->
+    <id column="order_context_id" jdbcType="INTEGER" property="orderContextId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="combo_id" jdbcType="INTEGER" property="comboId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    order_context_id, order_number, combo_id, project_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from phy_order_context
+    where order_context_id = #{orderContextId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from phy_order_context
+    where order_context_id = #{orderContextId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="order_context_id" keyProperty="orderContextId" parameterType="com.pojo.PhyOrderContext" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_order_context (order_number, combo_id, project_id
+      )
+    values (#{orderNumber,jdbcType=VARCHAR}, #{comboId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="order_context_id" keyProperty="orderContextId" parameterType="com.pojo.PhyOrderContext" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_order_context
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="comboId != null">
+        combo_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="comboId != null">
+        #{comboId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PhyOrderContext">
+    <!--@mbg.generated-->
+    update phy_order_context
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="comboId != null">
+        combo_id = #{comboId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_context_id = #{orderContextId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PhyOrderContext">
+    <!--@mbg.generated-->
+    update phy_order_context
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+      combo_id = #{comboId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER}
+    where order_context_id = #{orderContextId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getContextListByOrderNumber" resultMap="BaseResultMap">
+    select * from phy_order_context where order_number = #{number,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhyComboProjectConnetMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PhyComboProjectConnet">
+    <!--@mbg.generated-->
+    <!--@Table phy_combo_project_connet-->
+    <id column="combo_project_connet_id" jdbcType="INTEGER" property="comboProjectConnetId" />
+    <result column="combo_id" jdbcType="INTEGER" property="comboId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    combo_project_connet_id, combo_id, project_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from phy_combo_project_connet
+    where combo_project_connet_id = #{comboProjectConnetId,jdbcType=INTEGER}
+  </select>
+    <select id="getProjectByComboId" resultType="com.pojo.PhyProject">
+      select phy_project.*
+      from phy_project,phy_combo_project_connet
+      where phy_project.project_id = phy_combo_project_connet.project_id and phy_combo_project_connet.combo_id = #{comboId} and phy_combo_project_connet.combo_id != 0
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from phy_combo_project_connet
+    where combo_project_connet_id = #{comboProjectConnetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="combo_project_connet_id" keyProperty="comboProjectConnetId" parameterType="com.pojo.PhyComboProjectConnet" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_combo_project_connet (combo_id, project_id)
+    values (#{comboId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="combo_project_connet_id" keyProperty="comboProjectConnetId" parameterType="com.pojo.PhyComboProjectConnet" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_combo_project_connet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="comboId != null">
+        combo_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="comboId != null">
+        #{comboId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PhyComboProjectConnet">
+    <!--@mbg.generated-->
+    update phy_combo_project_connet
+    <set>
+      <if test="comboId != null">
+        combo_id = #{comboId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where combo_project_connet_id = #{comboProjectConnetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PhyComboProjectConnet">
+    <!--@mbg.generated-->
+    update phy_combo_project_connet
+    set combo_id = #{comboId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER}
+    where combo_project_connet_id = #{comboProjectConnetId,jdbcType=INTEGER}
+  </update>
+
+  <select id="getSubitemByComboId" resultType="com.pojo.PhySubitem">
+    select phy_subitem.*
+    from phy_subitem,phy_combo_project_connet
+    where phy_subitem.subitem_id = phy_combo_project_connet.subitem_id and phy_combo_project_connet.combo_id = #{comboId}
+  </select>
+
+  <delete id="deleteByComboId">
+    delete from phy_combo_project_connet where combo_id = #{comboId}
+  </delete>
+
+  <select id="getProjectByProjectId" resultType="com.pojo.PhyProject">
+    select phy_project.*
+    from phy_project,phy_combo_project_connet
+    where phy_project.project_id = phy_combo_project_connet.project_id and phy_combo_project_connet.project_id = #{project}
+  </select>
+</mapper>

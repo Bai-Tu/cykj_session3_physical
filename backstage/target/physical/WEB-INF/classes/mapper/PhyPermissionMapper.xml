@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhyPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PhyPermission">
+    <!--@mbg.generated-->
+    <!--@Table phy_permission-->
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    permission_id, role_id, menu_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from phy_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from phy_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="permission_id" keyProperty="permissionId" parameterType="com.pojo.PhyPermission" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_permission (role_id, menu_id)
+    values (#{roleId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="permission_id" keyProperty="permissionId" parameterType="com.pojo.PhyPermission" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into phy_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="menuId != null">
+        menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null">
+        #{menuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PhyPermission">
+    <!--@mbg.generated-->
+    update phy_permission
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null">
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PhyPermission">
+    <!--@mbg.generated-->
+    update phy_permission
+    set role_id = #{roleId,jdbcType=INTEGER},
+      menu_id = #{menuId,jdbcType=INTEGER}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+</mapper>
