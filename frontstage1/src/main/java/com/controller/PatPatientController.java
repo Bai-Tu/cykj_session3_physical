@@ -1,9 +1,12 @@
 package com.controller;
 
+import com.pojo.PhyOrder;
+import com.pojo.PhyPatient;
 import com.service.PatientService;
 import com.util.Md5;
 import com.util.ResponseDTO;
 import com.vo.LoginVo;
+import com.vo.PageVo;
 import com.vo.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,5 +47,37 @@ public class PatPatientController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping("/updatePatient")
+    public ResponseDTO updatePatient(@RequestBody PhyPatient patient){
+        ResponseDTO responseDTO = service.updatePatient(patient);
+        return responseDTO;
+    }
+
+    @ResponseBody
+    @RequestMapping("/getOrderListByIdInPage")
+    public ResponseDTO getOrderListByIdInPage(@RequestBody PageVo vo){
+        ResponseDTO responseDTO = service.getOrderListByIdInPage(vo);
+        return responseDTO;
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkOutOrder")
+    public ResponseDTO checkOutOrder(@RequestBody PhyOrder vo){
+        ResponseDTO responseDTO = service.checkOutOrder(vo);
+        return responseDTO;
+    }
+
+    @ResponseBody
+    @RequestMapping("/getOrderIndex")
+    public ResponseDTO getOrderIndex(@RequestBody PhyOrder vo){
+        return service.getOrderIndex(vo);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getOrderConclution")
+    public ResponseDTO getOrderConclution(@RequestBody PhyOrder vo){
+        return service.getOrderConclution(vo);
+    }
 
 }

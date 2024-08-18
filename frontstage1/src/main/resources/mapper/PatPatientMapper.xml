@@ -14,6 +14,15 @@
     <result column="patient_create_time" jdbcType="TIMESTAMP" property="patientCreateTime" />
     <result column="patient_status" jdbcType="INTEGER" property="patientStatus" />
   </resultMap>
+  <resultMap id="orderMap" type="com.pojo.PhyOrderContext">
+    <!--@mbg.generated-->
+    <!--@Table phy_order_context-->
+    <id column="order_context_id" jdbcType="INTEGER" property="orderContextId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="combo_id" jdbcType="INTEGER" property="comboId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     patient_id, patient_name, patient_password, patient_buddget, patient_phone, patient_identity, 
@@ -148,6 +157,63 @@
     insert into phy_patient(patient_name,patient_password,patient_identity,patient_age)
     values (#{name},#{pwd},#{acc},#{age})
   </insert>
+  <insert id="insertSubSelective">
+    insert into phy_subitem_conclution
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subitemConclutionId != null">
+        subitem_conclution_id,
+      </if>
+      <if test="subitemId != null">
+        subitem_id,
+      </if>
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="orderNameber != null">
+        order_nameber,
+      </if>
+      <if test="subitemConclution != null">
+        subitem_conclution,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subitemConclutionId != null">
+        #{subitemConclutionId,jdbcType=INTEGER},
+      </if>
+      <if test="subitemId != null">
+        #{subitemId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNameber != null">
+        #{orderNameber,jdbcType=VARCHAR},
+      </if>
+      <if test="subitemConclution != null">
+        #{subitemConclution,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertOrderSelective">
+    <!--@mbg.generated-->
+    insert into phy_conclution
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="conclutionContent != null">
+        conclution_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="conclutionContent != null">
+        #{conclutionContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 
   <select id="searchPatientByPhone" resultType="com.pojo.PhyPatient">
     select * from phy_patient where patient_phone = #{phone}
@@ -191,9 +257,71 @@
   <update id="checkOutOrder">
     update phy_patient set patient_buddget = patient_buddget - #{price,jdbcType=DECIMAL} where patient_id = #{id}
   </update>
+  <update id="updateOrderByPrimaryKeySelective">
+    update phy_order
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null">
+        patient_id = #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null">
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null">
+        order_price = #{orderPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
 
   <select id="myInsertPatient" resultType="int">
     insert into phy_patient(patient_name,patient_phone,patient_identity,patient_password,patient_age)
     values (#{patientName,jdbcType=VARCHAR},#{patientPhone,jdbcType=VARCHAR},#{patientIdentity,jdbcType=VARCHAR},#{patientPassword,jdbcType=VARCHAR},#{patientAge,jdbcType=VARCHAR})
   </select>
+
+  <select id="getOrderListByIdInPage" resultType="com.pojo.PhyOrder">
+    select * from phy_order where patient_id = #{id}
+  </select>
+  <select id="selectPatientByPrimaryKey" resultType="com.pojo.PhyPatient">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from phy_patient
+    where patient_id = #{patientId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getContextListByOrderNumber" resultMap="orderMap">
+    select * from phy_order_context where order_number = #{number,jdbcType=VARCHAR}
+  </select>
+  <select id="getProjectByComboId" resultType="com.pojo.PhyProject">
+    select phy_project.*
+    from phy_project,phy_combo_project_connet
+    where phy_project.project_id = phy_combo_project_connet.project_id and phy_combo_project_connet.combo_id = #{comboId} and phy_combo_project_connet.combo_id != 0
+  </select>
+  <select id="selectAllByProjectId" resultType="com.pojo.PhySubitem">
+    SELECT phy_subitem.subitem_id,phy_subitem.subitem_name
+    FROM phy_subitem,phy_project_subitem_connect
+    WHERE phy_subitem.subitem_id = phy_project_subitem_connect.subitem_id AND phy_project_subitem_connect.project_id = #{id};
+  </select>
+  <select id="selectProByPrimaryKey" resultType="com.pojo.PhyProject">
+    select
+    *
+    from phy_project
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </select>
+  <select id="getOrderNumber" resultType="com.pojo.SubitemConclutionAndSubitem">
+    SELECT DISTINCT  phy_subitem_conclution.*,phy_subitem.subitem_name,phy_subitem.subitem_standard_max,phy_subitem.subitem_standard_min,phy_subitem.subitem_unit
+    FROM `phy_subitem_conclution`,phy_subitem
+    WHERE phy_subitem_conclution.subitem_id = phy_subitem.subitem_id
+      AND phy_subitem_conclution.order_nameber = #{number,jdbcType=VARCHAR}
+  </select>
+  <select id="getOrderConclution" resultType="com.pojo.PhyConclution">
+    select * from phy_conclution where order_number = #{number}
+  </select>
+
 </mapper>

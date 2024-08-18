@@ -1,6 +1,6 @@
 package com.mapper;
 
-import com.pojo.PhyPatient;
+import com.pojo.*;
 import com.vo.RegisterVo;
 import com.vo.SearchPageVo;
 import org.apache.ibatis.annotations.Param;
@@ -47,4 +47,23 @@ public interface PatPatientMapper {
     int checkOutOrder(@Param("id") int id, @Param("price")BigDecimal price);
 
     int myInsertPatient(PhyPatient patient);
+
+    List<PhyOrder> getOrderListByIdInPage(int id);
+
+    PhyPatient selectPatientByPrimaryKey(Integer patientId);
+
+    int updateOrderByPrimaryKeySelective(PhyOrder vo);
+    List<PhyOrderContext> getContextListByOrderNumber(String number);
+    List<PhyProject> getProjectByComboId(int comboId);
+    List<PhySubitem> selectAllByProjectId(int id);
+
+    int insertSubSelective(PhySubitemConclution record);
+    PhyProject selectProByPrimaryKey(Integer projectId);
+    int insertOrderSelective(PhyConclution record);
+
+    List<SubitemConclutionAndSubitem> getOrderNumber(String number);
+
+    PhyConclution getOrderConclution(String number);
+
+
 }
