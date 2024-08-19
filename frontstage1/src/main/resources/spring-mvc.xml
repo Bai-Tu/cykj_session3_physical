@@ -45,6 +45,7 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/tool1/*"/>
             <mvc:exclude-mapping path="/patient1/patientLogin"/>
+            <mvc:exclude-mapping path="/pay/*"/>
             <bean class="com.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

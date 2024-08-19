@@ -80,4 +80,11 @@ public class PatPatientController {
         return service.getOrderConclution(vo);
     }
 
+    @ResponseBody
+    @RequestMapping("/getNewInfo")
+    public ResponseDTO getNewInfo(@RequestBody PhyPatient vo){
+        ResponseDTO newInfo = service.getNewInfo(vo);
+        return ResponseDTO.success(newInfo);
+    }
+
 }

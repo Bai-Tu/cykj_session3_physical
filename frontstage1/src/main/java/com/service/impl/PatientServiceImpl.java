@@ -174,4 +174,19 @@ public class PatientServiceImpl implements PatientService {
         PhyConclution orderConclution = mapper.getOrderConclution(vo.getOrderNumber());
         return ResponseDTO.success(orderConclution);
     }
+
+    @Override
+    public ResponseDTO addBudget(PhyPatient vo) {
+        Integer integer = mapper.addBudget(vo);
+        return ResponseDTO.success(integer);
+    }
+
+    @Override
+    public ResponseDTO getNewInfo(PhyPatient vo) {
+        HashMap<String,Object> data = new HashMap<>();
+        PhyPatient patient = mapper.selectByPrimaryKey(vo.getPatientId());
+        data.put("adminInfo",patient);
+        String token = JwtUtil.generateToken(data);
+        return ResponseDTO.success(token);
+    }
 }

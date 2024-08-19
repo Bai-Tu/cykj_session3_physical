@@ -20,4 +20,6 @@ public interface PatientService {
     ResponseDTO checkOutOrder(PhyOrder vo);
     ResponseDTO getOrderIndex(PhyOrder vo);
     ResponseDTO getOrderConclution(PhyOrder vo);
+    ResponseDTO addBudget(PhyPatient vo);
+    ResponseDTO getNewInfo(PhyPatient vo);
 }
