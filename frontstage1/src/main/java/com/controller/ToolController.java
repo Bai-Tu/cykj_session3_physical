@@ -1,8 +1,11 @@
 package com.controller;
 
+import com.mapper.PatPatientMapper;
+import com.pojo.PhyPatient;
 import com.util.ImageCodeUtils;
 import com.util.JwtUtil;
 import com.util.ResponseDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,9 @@ import java.util.Map;
 @RequestMapping("/tool1")
 public class ToolController {
 
+    @Autowired
+    PatPatientMapper mapper;
+
     @RequestMapping("/refreshCheckCode")
     public void refreshCheckCode(HttpServletResponse response, HttpSession session){
         ImageCodeUtils imageCodeUtils = new ImageCodeUtils();
@@ -40,7 +46,9 @@ public class ToolController {
     @RequestMapping("/parseToken")
     public ResponseDTO parseToken(String token){
         Map<String, Object> map = JwtUtil.parseToken(token);
-        return ResponseDTO.success(map);
+        Map<String,Object> adminInfo = (Map<String, Object>)map.get("adminInfo");
+        PhyPatient patient = mapper.selectByPrimaryKey(Integer.valueOf(adminInfo.get("patientId").toString()));
+        return ResponseDTO.success(patient);
     }
 
 
