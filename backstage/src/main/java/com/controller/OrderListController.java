@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyOrder;
 import com.service.OrderListService;
 import com.util.RandomOrderNumber;
@@ -39,6 +40,7 @@ public class OrderListController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/checkOutOrder")
     public ResponseDTO checkOutOrder(@RequestBody PhyOrder vo){
@@ -46,6 +48,7 @@ public class OrderListController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addOrder")
     public ResponseDTO addOrder(@RequestBody OrderVo vo){

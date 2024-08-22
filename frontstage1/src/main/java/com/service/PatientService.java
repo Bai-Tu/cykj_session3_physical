@@ -2,6 +2,7 @@ package com.service;
 
 import com.pojo.PhyOrder;
 import com.pojo.PhyPatient;
+import com.pojo.PhyStatementLog;
 import com.util.ResponseDTO;
 import com.vo.LoginVo;
 import com.vo.PageVo;
@@ -22,4 +23,5 @@ public interface PatientService {
     ResponseDTO getOrderConclution(PhyOrder vo);
     ResponseDTO addBudget(PhyPatient vo);
     ResponseDTO getNewInfo(PhyPatient vo);
+    ResponseDTO addlog(PhyStatementLog log);
 }

@@ -31,7 +31,7 @@ public class AlipayConfig {
     /**
      * 服务器异步通知页面路径需http://格式的完整路径，不能加?id=123这类自定义参数
      */
-    private String notifyUrl = "http://9qzgwt.natappfree.cc/pat/pay/getResponse";
+    private String notifyUrl = "http://up5fdw.natappfree.cc/pat/pay/getResponse";
 
     /**
      * 页面跳转同步通知页面路径 需http://格式的完整路径.

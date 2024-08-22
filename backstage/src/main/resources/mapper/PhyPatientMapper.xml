@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mapper.PatPatientMapper">
+<mapper namespace="com.mapper.PhyPatientMapper">
   <resultMap id="BaseResultMap" type="com.pojo.PhyPatient">
     <!--@mbg.generated-->
     <!--@Table phy_patient-->
@@ -195,5 +195,15 @@
   <select id="myInsertPatient" resultType="int">
     insert into phy_patient(patient_name,patient_phone,patient_identity,patient_password,patient_age)
     values (#{patientName,jdbcType=VARCHAR},#{patientPhone,jdbcType=VARCHAR},#{patientIdentity,jdbcType=VARCHAR},#{patientPassword,jdbcType=VARCHAR},#{patientAge,jdbcType=VARCHAR})
+  </select>
+
+  <select id="countPatientInAge" resultType="int">
+    select count(*) from phy_patient where patient_age >= #{minAge} and patient_age &lt;= #{maxAge};
+  </select>
+
+  <select id="getSaleInTime" resultType="java.math.BigDecimal">
+    SELECT SUM(order_price)
+    FROM phy_order
+    WHERE DATE_FORMAT(order_create_time, '%Y-%m') = #{monthTime,jdbcType=VARCHAR};
   </select>
 </mapper>

@@ -82,4 +82,8 @@
       log_time = #{logTime,jdbcType=TIMESTAMP}
     where log_id = #{logId,jdbcType=INTEGER}
   </update>
+
+  <select id="getLogs" resultMap="BaseResultMap">
+    select * from phy_log
+    </select>
 </mapper>

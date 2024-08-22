@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyCombo;
 import com.service.ComboService;
 import com.util.ResponseDTO;
@@ -37,6 +38,7 @@ public class ComboController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addCombo")
     public ResponseDTO addCombo(@RequestBody PhyCombo vo){
@@ -45,6 +47,7 @@ public class ComboController {
     }
 
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editCombo")
     public ResponseDTO editCombo(@RequestBody PhyCombo vo){
@@ -52,6 +55,7 @@ public class ComboController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/switchComboStatus")
     public ResponseDTO switchComboStatus(@RequestBody PhyCombo vo){

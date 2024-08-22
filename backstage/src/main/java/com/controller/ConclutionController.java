@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyConclution;
 import com.service.ConclutionService;
 import com.util.ResponseDTO;
@@ -27,6 +28,7 @@ public class ConclutionController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/setConclution")
     public ResponseDTO setConclution(@RequestBody PhyConclution vo){

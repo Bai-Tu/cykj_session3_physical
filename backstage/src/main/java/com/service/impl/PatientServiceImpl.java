@@ -3,7 +3,9 @@ package com.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mapper.PhyPatientMapper;
+import com.mapper.PhyStatementLogMapper;
 import com.pojo.PhyPatient;
+import com.pojo.PhyStatementLog;
 import com.service.PatientService;
 import com.util.ResponseDTO;
 import com.vo.LoginVo;
@@ -26,6 +28,10 @@ public class PatientServiceImpl implements PatientService {
 
     @Autowired
     PhyPatientMapper mapper;
+
+    @Autowired
+    PhyStatementLogMapper statementLogMapper;
+
     @Override
     public ResponseDTO registerPatient(RegisterVo vo) {
         int result = 0;
@@ -100,6 +106,11 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public ResponseDTO addBudget(PhyPatient vo) {
         Integer i = mapper.addBudget(vo);
+        PhyStatementLog log = new PhyStatementLog();
+        log.setPatientId(vo.getPatientId());
+        log.setStatementLogNum(vo.getPatientBuddget());
+        statementLogMapper.addLog(log);
+
         return ResponseDTO.success(i);
     }
 

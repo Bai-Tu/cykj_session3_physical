@@ -2,6 +2,7 @@ package com.controller;
 
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
+import com.annotation.Logable;
 import com.pojo.PhyPatient;
 import com.service.PatientService;
 import com.util.CheckCode;
@@ -68,6 +69,7 @@ public class PatientController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editPatient")
     public ResponseDTO editPatient(@RequestBody PhyPatient vo){
@@ -75,6 +77,7 @@ public class PatientController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/resetPwd")
     public ResponseDTO resetPwd(@RequestBody PhyPatient vo){
@@ -83,6 +86,7 @@ public class PatientController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addPatient")
     public ResponseDTO addPatient(@RequestBody PhyPatient vo){
@@ -90,6 +94,7 @@ public class PatientController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addBudget")
     public ResponseDTO addBudget(@RequestBody PhyPatient vo){
@@ -104,6 +109,7 @@ public class PatientController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/uploadExcel")
     public ResponseDTO uploadExcel(@RequestParam("file") MultipartFile file){

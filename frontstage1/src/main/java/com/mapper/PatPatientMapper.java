@@ -65,5 +65,5 @@ public interface PatPatientMapper {
 
     PhyConclution getOrderConclution(String number);
 
-
+    int addLogs(PhyStatementLog logs);
 }

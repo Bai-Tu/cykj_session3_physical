@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyProject;
 import com.pojo.PhySubitem;
 import com.service.SubitemService;
@@ -30,6 +31,7 @@ public class SubitemController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/insertSubitem")
     public ResponseDTO insertSubitem(@RequestBody PhySubitem subitem){
@@ -37,6 +39,7 @@ public class SubitemController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editSubitem")
     public ResponseDTO editSubitem(@RequestBody PhySubitem subitem){
@@ -51,6 +54,7 @@ public class SubitemController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editSubitemStatus")
     public ResponseDTO editSubitemStatus(@RequestBody PhySubitem subitem){

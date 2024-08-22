@@ -43,8 +43,12 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/tool/*"/>
+            <mvc:exclude-mapping path="/tool/refreshCheckCode"/>
             <mvc:exclude-mapping path="/admin/adminLogin"/>
+            <mvc:exclude-mapping path="/swagger-ui.html/**"/>
+            <mvc:exclude-mapping path="/swagger-resources/**"/>
+            <mvc:exclude-mapping path="/v2/**"/>
+            <mvc:exclude-mapping path="/webjars/**"/>
             <bean class="com.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -56,7 +60,12 @@
     </bean>
 
     <!-- 启动AspectJ支持   只对扫描过的bean有效-->
+    <!--开启aop支持-->
     <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <!-- 映射 Swagger-ui 静态资源-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
 
 </beans>

@@ -6,6 +6,7 @@ import com.ali.AlipayConfig;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.pojo.PhyPatient;
+import com.pojo.PhyStatementLog;
 import com.service.AliService;
 import com.service.PatientService;
 import com.util.ResponseDTO;
@@ -86,6 +87,10 @@ public class AliController {
                 vo.setPatientId(Integer.valueOf(params.get("body")));
                 vo.setPatientBuddget(BigDecimal.valueOf(Float.parseFloat(params.get("total_amount"))));
                 service.addBudget(vo);
+                PhyStatementLog log = new PhyStatementLog();
+                log.setPatientId(Integer.valueOf(params.get("body")));
+                log.setStatementLogNum(BigDecimal.valueOf(Float.parseFloat(params.get("total_amount"))));
+                service.addlog(log);
                 System.out.println("__________________编辑成功——————————————————————————————————");
 
             }else {

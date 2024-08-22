@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyRole;
 import com.service.RoleService;
 import com.util.ResponseDTO;
@@ -28,6 +29,7 @@ public class RoleController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addRole")
     public ResponseDTO addRole(@RequestBody PhyRole vo){

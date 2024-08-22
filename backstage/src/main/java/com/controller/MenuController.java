@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.mapper.PhyMenuMapper;
 import com.pojo.PhyMenu;
 import com.pojo.PhyRole;
@@ -44,6 +45,7 @@ public class MenuController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editMenuAuthority")
     public ResponseDTO editMenuAuthority(@RequestBody AuthorityPermissionVo vo){
@@ -58,6 +60,7 @@ public class MenuController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/switchMenuStatus")
     public ResponseDTO switchMenuStatus(@RequestBody PhyMenu vo){

@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyDepartment;
 import com.service.DepartmentService;
 import com.util.ResponseDTO;
@@ -36,6 +37,7 @@ public class DepartmentController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/switchDepartmentStatus")
     public ResponseDTO switchDepartmentStatus(@RequestBody PhyDepartment vo){
@@ -43,6 +45,7 @@ public class DepartmentController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addDepartment")
     public ResponseDTO addDepartment(@RequestBody PhyDepartment vo){
@@ -50,6 +53,7 @@ public class DepartmentController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editDepartment")
     public ResponseDTO editDepartment(@RequestBody PhyDepartment vo){

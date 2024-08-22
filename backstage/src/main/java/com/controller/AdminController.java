@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyAdmin;
 import com.service.AdminService;
 import com.util.ResponseDTO;
@@ -25,12 +26,14 @@ public class AdminController {
     @Autowired
     AdminService service;
 
+    @Logable
     @ResponseBody
     @RequestMapping("/adminLogin")
     public ResponseDTO adminLogin(@RequestBody LoginVo vo){
         ResponseDTO responseDTO = service.adminLogin(vo);
         return responseDTO;
     }
+
 
     @ResponseBody
     @RequestMapping("/getAllAdmin")
@@ -39,6 +42,7 @@ public class AdminController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/resetPwd")
     public ResponseDTO resetPwd(@RequestBody PhyAdmin vo){
@@ -46,6 +50,7 @@ public class AdminController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addAdmin")
     public ResponseDTO addAdmin(@RequestBody PhyAdmin vo){
@@ -53,6 +58,7 @@ public class AdminController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editAdmin")
     public ResponseDTO editAdmin(@RequestBody PhyAdmin vo){
@@ -67,6 +73,7 @@ public class AdminController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/changePwd")
     public ResponseDTO changePwd(@RequestBody ChangePwdVo vo){

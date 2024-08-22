@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhyCombo;
 import com.pojo.PhyComboProjectConnet;
 import com.pojo.PhyProject;
@@ -39,6 +40,7 @@ public class ProjectController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/addProject")
     public ResponseDTO addProject(@RequestBody PhyProject vo){
@@ -46,6 +48,7 @@ public class ProjectController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/editProject")
     public ResponseDTO editProject(@RequestBody PhyProject vo){
@@ -53,6 +56,7 @@ public class ProjectController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/switchProjectStatus")
     public ResponseDTO switchProjectStatus(@RequestBody PhyProject vo){

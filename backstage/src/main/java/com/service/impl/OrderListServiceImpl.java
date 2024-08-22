@@ -46,6 +46,10 @@ public class OrderListServiceImpl implements OrderListService {
     @Autowired
     PhyConclutionMapper conclutionMapper;
 
+    @Autowired
+    PhyStatementLogMapper statementLogMapper;
+
+
     @Override
     public ResponseDTO getOrderListByIdInPage(PageVo vo) {
         PageHelper.startPage(vo.getPagen(),vo.getLimit());
@@ -107,6 +111,11 @@ public class OrderListServiceImpl implements OrderListService {
                 PhyConclution allConclution = new PhyConclution();
                 allConclution.setOrderNumber(vo.getOrderNumber());
                 conclutionMapper.insertSelective(allConclution);
+
+                PhyStatementLog log = new PhyStatementLog();
+                log.setPatientId(vo.getPatientId());
+                log.setStatementLogNum(vo.getOrderPrice().negate());
+                statementLogMapper.addLog(log);
 
                 return ResponseDTO.success(i1);
             }

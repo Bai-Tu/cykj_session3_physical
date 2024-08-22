@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -154,6 +155,11 @@ public class PatientServiceImpl implements PatientService {
                 allConclution.setOrderNumber(vo.getOrderNumber());
                 mapper.insertOrderSelective(allConclution);
 
+                PhyStatementLog log = new PhyStatementLog();
+                log.setPatientId(vo.getPatientId());
+                log.setStatementLogNum(vo.getOrderPrice().negate());
+                mapper.addLogs(log);
+
                 return ResponseDTO.success(i1);
             }
         } catch (Exception e) {
@@ -188,5 +194,11 @@ public class PatientServiceImpl implements PatientService {
         data.put("adminInfo",patient);
         String token = JwtUtil.generateToken(data);
         return ResponseDTO.success(token);
+    }
+
+    @Override
+    public ResponseDTO addlog(PhyStatementLog log) {
+        int i = mapper.addLogs(log);
+        return ResponseDTO.success(i);
     }
 }

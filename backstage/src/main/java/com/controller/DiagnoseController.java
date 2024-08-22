@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.annotation.Logable;
 import com.pojo.PhySubitemConclution;
 import com.service.DiagnoseService;
 import com.util.ResponseDTO;
@@ -30,6 +31,7 @@ public class DiagnoseController {
         return responseDTO;
     }
 
+    @Logable
     @ResponseBody
     @RequestMapping("/updateConclution")
     public ResponseDTO updateConclution(@RequestBody PhySubitemConclution vo){

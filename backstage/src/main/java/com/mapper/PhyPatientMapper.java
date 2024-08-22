@@ -47,4 +47,6 @@ public interface PhyPatientMapper {
     int checkOutOrder(@Param("id") int id, @Param("price")BigDecimal price);
 
     int myInsertPatient(PhyPatient patient);
+    int countPatientInAge(@Param("minAge")int minage,@Param("maxAge")int maxage);
+    BigDecimal getSaleInTime(String monthTime);
 }
