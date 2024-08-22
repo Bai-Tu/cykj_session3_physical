@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.PhyReportMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PhyReport">
+    <!--@mbg.generated-->
+    <!--@Table phy_report-->
+    <id column="report_id" jdbcType="INTEGER" property="reportId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="report_context" jdbcType="VARCHAR" property="reportContext" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="report_create_time" jdbcType="TIMESTAMP" property="reportCreateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    report_id, order_number, report_context, admin_id, report_create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from phy_report
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from phy_report
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.PhyReport">
+    <!--@mbg.generated-->
+    insert into phy_report (report_id, order_number, report_context, 
+      admin_id, report_create_time)
+    values (#{reportId,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, #{reportContext,jdbcType=VARCHAR}, 
+      #{adminId,jdbcType=INTEGER}, #{reportCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.PhyReport">
+    <!--@mbg.generated-->
+    insert into phy_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportId != null">
+        report_id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="reportContext != null">
+        report_context,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="reportCreateTime != null">
+        report_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportId != null">
+        #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reportContext != null">
+        #{reportContext,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="reportCreateTime != null">
+        #{reportCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PhyReport">
+    <!--@mbg.generated-->
+    update phy_report
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reportContext != null">
+        report_context = #{reportContext,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="reportCreateTime != null">
+        report_create_time = #{reportCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PhyReport">
+    <!--@mbg.generated-->
+    update phy_report
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+      report_context = #{reportContext,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      report_create_time = #{reportCreateTime,jdbcType=TIMESTAMP}
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </update>
+</mapper>
