@@ -9,6 +9,7 @@ import com.vo.PageVo;
 import com.vo.SearchPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class SubitemController {
     SubitemService service;
 
     @ResponseBody
-    @RequestMapping("/getAllSubitem")
+    @PostMapping("/getAllSubitem")
     public ResponseDTO getAllSubitem(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllSubitem(vo);
         return responseDTO;
@@ -33,7 +34,7 @@ public class SubitemController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/insertSubitem")
+    @PostMapping("/insertSubitem")
     public ResponseDTO insertSubitem(@RequestBody PhySubitem subitem){
         ResponseDTO responseDTO = service.insertSubitem(subitem);
         return responseDTO;
@@ -41,14 +42,14 @@ public class SubitemController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editSubitem")
+    @PostMapping("/editSubitem")
     public ResponseDTO editSubitem(@RequestBody PhySubitem subitem){
         ResponseDTO responseDTO = service.editSubitem(subitem);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getSubitemInSearch")
+    @PostMapping("/getSubitemInSearch")
     public ResponseDTO getSubitemInSearch(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.searchSubitem(vo);
         return responseDTO;
@@ -56,35 +57,35 @@ public class SubitemController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editSubitemStatus")
+    @PostMapping("/editSubitemStatus")
     public ResponseDTO editSubitemStatus(@RequestBody PhySubitem subitem){
         ResponseDTO responseDTO = service.editSubitemStatus(subitem);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getDiffSubitem")
+    @PostMapping("/getDiffSubitem")
     public ResponseDTO getDiffSubitem(@RequestBody PhyProject project){
         ResponseDTO responseDTO = service.getDiffSubitem(project.getProjectId());
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAllSubitemNoVo")
+    @PostMapping("/getAllSubitemNoVo")
     public ResponseDTO getAllSubitemNoVo(){
         ResponseDTO responseDTO = service.getAllSubitemNoVo();
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAllSubitemNoVoWithStatus")
+    @PostMapping("/getAllSubitemNoVoWithStatus")
     public ResponseDTO getAllSubitemNoVoWithStatus(@RequestBody PhySubitem vo){
         ResponseDTO responseDTO = service.getAllSubitemNoVoWithStatus(vo.getSubitemStatus());
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getDiffSubitemWithStatus")
+    @PostMapping("/getDiffSubitemWithStatus")
     public ResponseDTO getDiffSubitemWithStatus(@RequestBody PhyProject vo){
         ResponseDTO responseDTO = service.getDiffSubitemWithStatus(vo);
         return responseDTO;

@@ -4,6 +4,7 @@ import com.service.DataService;
 import com.util.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,14 +20,14 @@ public class DataController {
     DataService service;
 
     @ResponseBody
-    @RequestMapping("/getAgeData")
+    @PostMapping("/getAgeData")
     public ResponseDTO getAgeData(){
         ResponseDTO responseDTO = service.getAgeData();
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getSaleData")
+    @PostMapping("/getSaleData")
     public ResponseDTO getSaleData(){
         ResponseDTO responseDTO = service.getSaleData();
         return responseDTO;

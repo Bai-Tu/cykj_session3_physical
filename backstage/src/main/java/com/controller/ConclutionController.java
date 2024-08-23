@@ -6,6 +6,7 @@ import com.service.ConclutionService;
 import com.util.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +23,7 @@ public class ConclutionController {
     ConclutionService service;
 
     @ResponseBody
-    @RequestMapping("/getConclutionByOrderNumber")
+    @PostMapping("/getConclutionByOrderNumber")
     public ResponseDTO getConclutionByOrderNumber(@RequestBody PhyConclution vo){
         ResponseDTO responseDTO = service.getConclutionByOrderNumber(vo);
         return responseDTO;
@@ -30,7 +31,7 @@ public class ConclutionController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/setConclution")
+    @PostMapping("/setConclution")
     public ResponseDTO setConclution(@RequestBody PhyConclution vo){
         ResponseDTO responseDTO = service.setConclution(vo);
         return responseDTO;

@@ -8,6 +8,7 @@ import com.vo.PageVo;
 import com.vo.SearchPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,14 +26,14 @@ public class ComboController {
     ComboService service;
 
     @ResponseBody
-    @RequestMapping("/getAllComboByPage")
+    @PostMapping("/getAllComboByPage")
     public ResponseDTO getAllComboByPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllComboByPage(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/searchCombo")
+    @PostMapping("/searchCombo")
     public ResponseDTO searchCombo(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.searchCombo(vo);
         return responseDTO;
@@ -40,7 +41,7 @@ public class ComboController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addCombo")
+    @PostMapping("/addCombo")
     public ResponseDTO addCombo(@RequestBody PhyCombo vo){
         ResponseDTO responseDTO = service.addCombo(vo);
         return responseDTO;
@@ -49,7 +50,7 @@ public class ComboController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editCombo")
+    @PostMapping("/editCombo")
     public ResponseDTO editCombo(@RequestBody PhyCombo vo){
         ResponseDTO responseDTO = service.editCombo(vo);
         return responseDTO;
@@ -57,21 +58,21 @@ public class ComboController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/switchComboStatus")
+    @PostMapping("/switchComboStatus")
     public ResponseDTO switchComboStatus(@RequestBody PhyCombo vo){
         ResponseDTO responseDTO = service.switchComboStatus(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAllComboNoPage")
+    @PostMapping("/getAllComboNoPage")
     public ResponseDTO getAllComboNoPage(){
         ResponseDTO responseDTO = service.getAllComboNoPage();
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAllComboWithStatus")
+    @PostMapping("/getAllComboWithStatus")
     public ResponseDTO getAllComboWithStatus(@RequestBody PhyCombo vo){
         ResponseDTO responseDTO = service.getAllComboWithStatus(vo.getComboStatus());
         return responseDTO;

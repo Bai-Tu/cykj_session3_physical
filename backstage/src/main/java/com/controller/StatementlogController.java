@@ -24,14 +24,14 @@ public class StatementlogController {
     StatementLogService service;
 
     @ResponseBody
-    @RequestMapping("/getStatementlogByPage")
+    @PostMapping("/getStatementlogByPage")
     public ResponseDTO getStatementlogByPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getStatementlogByPage(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getStatementlogInSearchByPage")
+    @PostMapping("/getStatementlogInSearchByPage")
     public ResponseDTO getStatementlogInSearchByPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getStatementlogInSearchByPage(vo);
         return responseDTO;

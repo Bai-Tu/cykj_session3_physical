@@ -5,6 +5,7 @@ import com.util.ResponseDTO;
 import com.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +22,7 @@ public class LogController {
     LogsService service;
 
     @ResponseBody
-    @RequestMapping("/getLogsByPage")
+    @PostMapping("/getLogsByPage")
     public ResponseDTO getLogsByPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getLogsByPage(vo);
         return responseDTO;

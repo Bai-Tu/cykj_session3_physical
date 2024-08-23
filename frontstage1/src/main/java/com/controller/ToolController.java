@@ -8,6 +8,7 @@ import com.util.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +31,7 @@ public class ToolController {
     @Autowired
     PatPatientMapper mapper;
 
-    @RequestMapping("/refreshCheckCode")
+    @PostMapping("/refreshCheckCode")
     public void refreshCheckCode(HttpServletResponse response, HttpSession session){
         ImageCodeUtils imageCodeUtils = new ImageCodeUtils();
         System.out.println("进来了"+imageCodeUtils);
@@ -43,7 +44,7 @@ public class ToolController {
     }
 
     @ResponseBody
-    @RequestMapping("/parseToken")
+    @PostMapping("/parseToken")
     public ResponseDTO parseToken(String token){
         Map<String, Object> map = JwtUtil.parseToken(token);
         Map<String,Object> adminInfo = (Map<String, Object>)map.get("adminInfo");

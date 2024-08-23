@@ -42,7 +42,7 @@ public class PatientController {
     PatientService service;
 
     @ResponseBody
-    @RequestMapping("/registerPatient")
+    @PostMapping("/registerPatient")
     public ResponseDTO registerPatient(@RequestBody RegisterVo vo, HttpSession session){
         if (vo.getCode().equals(session.getAttribute("code"))){
             String encrypted = Md5.getEncrypted(vo.getPwd());
@@ -54,7 +54,7 @@ public class PatientController {
     }
 
     @ResponseBody
-    @RequestMapping("/loginPatient")
+    @PostMapping("/loginPatient")
     public ResponseDTO loginPatient(@RequestBody LoginVo vo) {
         String encrypted = Md5.getEncrypted(vo.getPwd());
         vo.setPwd(encrypted);
@@ -63,7 +63,7 @@ public class PatientController {
     }
 
     @ResponseBody
-    @RequestMapping("/getAllPatientByPage")
+    @PostMapping("/getAllPatientByPage")
     public ResponseDTO getAllPatientByPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllPatientByPage(vo);
         return responseDTO;
@@ -71,7 +71,7 @@ public class PatientController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editPatient")
+    @PostMapping("/editPatient")
     public ResponseDTO editPatient(@RequestBody PhyPatient vo){
         ResponseDTO responseDTO = service.editPatient(vo);
         return responseDTO;
@@ -79,7 +79,7 @@ public class PatientController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/resetPwd")
+    @PostMapping("/resetPwd")
     public ResponseDTO resetPwd(@RequestBody PhyPatient vo){
         vo.setPatientPassword("e10adc3949ba59abbe56e057f20f883e");
         ResponseDTO responseDTO = service.editPatient(vo);
@@ -88,7 +88,7 @@ public class PatientController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addPatient")
+    @PostMapping("/addPatient")
     public ResponseDTO addPatient(@RequestBody PhyPatient vo){
         ResponseDTO responseDTO = service.addPatient(vo);
         return responseDTO;
@@ -96,14 +96,14 @@ public class PatientController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addBudget")
+    @PostMapping("/addBudget")
     public ResponseDTO addBudget(@RequestBody PhyPatient vo){
         ResponseDTO responseDTO = service.addBudget(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/searchPatient")
+    @PostMapping("/searchPatient")
     public ResponseDTO searchPatient(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.searchPatient(vo);
         return responseDTO;
@@ -111,7 +111,7 @@ public class PatientController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/uploadExcel")
+    @PostMapping("/uploadExcel")
     public ResponseDTO uploadExcel(@RequestParam("file") MultipartFile file){
         try{
             List<String> failNames = new ArrayList<>();

@@ -5,6 +5,7 @@ import com.service.ProjectSubitemService;
 import com.util.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +23,7 @@ public class ProjectSubitemController {
     ProjectSubitemService service;
 
     @ResponseBody
-    @RequestMapping("/getSubitemById")
+    @PostMapping("/getSubitemById")
     public ResponseDTO getSubitemById(@RequestBody PhyProject vo){
         ResponseDTO responseDTO = service.getSubitemById(vo.getProjectId());
         return responseDTO;

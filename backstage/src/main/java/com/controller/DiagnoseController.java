@@ -7,6 +7,7 @@ import com.util.ResponseDTO;
 import com.vo.SearchPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class DiagnoseController {
 
 
     @ResponseBody
-    @RequestMapping("/getOrderContextByNumberByPage")
+    @PostMapping("/getOrderContextByNumberByPage")
     public ResponseDTO getOrderContextByNumberByPage(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.getOrderContextByNumberByPage(vo);
         return responseDTO;
@@ -33,7 +34,7 @@ public class DiagnoseController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/updateConclution")
+    @PostMapping("/updateConclution")
     public ResponseDTO updateConclution(@RequestBody PhySubitemConclution vo){
         ResponseDTO responseDTO = service.updateConclution(vo);
         return responseDTO;

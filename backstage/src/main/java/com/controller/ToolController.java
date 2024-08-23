@@ -4,10 +4,7 @@ import com.util.ImageCodeUtils;
 import com.util.JwtUtil;
 import com.util.ResponseDTO;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +21,7 @@ import java.util.Map;
 @RequestMapping("/tool")
 public class ToolController {
 
-    @RequestMapping("/refreshCheckCode")
+    @PostMapping("/refreshCheckCode")
     public void refreshCheckCode(HttpServletResponse response, HttpSession session){
         ImageCodeUtils imageCodeUtils = new ImageCodeUtils();
         System.out.println("进来了"+imageCodeUtils);
@@ -37,7 +34,7 @@ public class ToolController {
     }
 
     @ResponseBody
-    @RequestMapping("/parseToken")
+    @PostMapping("/parseToken")
     public ResponseDTO parseToken(String token){
         Map<String, Object> map = JwtUtil.parseToken(token);
         return ResponseDTO.success(map);

@@ -10,6 +10,7 @@ import com.vo.PageVo;
 import com.vo.SearchPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,14 +28,14 @@ public class ProjectController {
     ProjectService service;
 
     @ResponseBody
-    @RequestMapping("/getAllProject")
+    @PostMapping("/getAllProject")
     public ResponseDTO getAllProject(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllProject(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/searchProject")
+    @PostMapping("/searchProject")
     public ResponseDTO searchProject(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.searchProject(vo);
         return responseDTO;
@@ -42,7 +43,7 @@ public class ProjectController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addProject")
+    @PostMapping("/addProject")
     public ResponseDTO addProject(@RequestBody PhyProject vo){
         ResponseDTO responseDTO = service.addProject(vo);
         return responseDTO;
@@ -50,7 +51,7 @@ public class ProjectController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editProject")
+    @PostMapping("/editProject")
     public ResponseDTO editProject(@RequestBody PhyProject vo){
         ResponseDTO responseDTO = service.editProject(vo);
         return responseDTO;
@@ -58,28 +59,28 @@ public class ProjectController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/switchProjectStatus")
+    @PostMapping("/switchProjectStatus")
     public ResponseDTO switchProjectStatus(@RequestBody PhyProject vo){
         ResponseDTO responseDTO = service.switchProjectStatus(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAllProjectNoPage")
+    @PostMapping("/getAllProjectNoPage")
     public ResponseDTO getAllProjectNoPage(){
         ResponseDTO responseDTO = service.getAllProjectNoPage();
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getDiffProject")
+    @PostMapping("/getDiffProject")
     public ResponseDTO getDiffProject(@RequestBody PhyCombo vo){
         ResponseDTO responseDTO = service.getDiffProject(vo.getComboId());
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAllProjectWithStatus")
+    @PostMapping("/getAllProjectWithStatus")
     public ResponseDTO getAllProjectWithStatus(@RequestBody PhyProject vo){
         ResponseDTO responseDTO = service.getAllProjectWithStatus(vo.getProjectStatus());
         return responseDTO;

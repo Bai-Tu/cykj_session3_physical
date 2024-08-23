@@ -5,6 +5,7 @@ import com.service.ComboProjectService;
 import com.util.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,14 +23,14 @@ public class ComboProjectController {
     ComboProjectService service;
 
     @ResponseBody
-    @RequestMapping("/getProjectByComboId")
+    @PostMapping("/getProjectByComboId")
     public ResponseDTO getProjectByComboId(@RequestBody PhyComboProjectConnet vo){
         ResponseDTO responseDTO = service.getProjectByComboId(vo.getComboId());
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getSubitemByComboId")
+    @PostMapping("/getSubitemByComboId")
     public ResponseDTO getSubitemByComboId(@RequestBody PhyComboProjectConnet vo){
         ResponseDTO responseDTO = service.getSubitemByComboId(vo.getComboId());
         return responseDTO;

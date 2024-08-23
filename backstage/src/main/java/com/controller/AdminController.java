@@ -9,10 +9,7 @@ import com.vo.LoginVo;
 import com.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 李璟瑜
@@ -28,7 +25,7 @@ public class AdminController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/adminLogin")
+    @PostMapping("/adminLogin")
     public ResponseDTO adminLogin(@RequestBody LoginVo vo){
         ResponseDTO responseDTO = service.adminLogin(vo);
         return responseDTO;
@@ -36,7 +33,7 @@ public class AdminController {
 
 
     @ResponseBody
-    @RequestMapping("/getAllAdmin")
+    @PostMapping("/getAllAdmin")
     public ResponseDTO getAllAdmin(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllAdmin(vo);
         return responseDTO;
@@ -44,7 +41,7 @@ public class AdminController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/resetPwd")
+    @PostMapping("/resetPwd")
     public ResponseDTO resetPwd(@RequestBody PhyAdmin vo){
         ResponseDTO responseDTO = service.resetPwd(vo);
         return responseDTO;
@@ -52,7 +49,7 @@ public class AdminController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addAdmin")
+    @PostMapping("/addAdmin")
     public ResponseDTO addAdmin(@RequestBody PhyAdmin vo){
         ResponseDTO responseDTO = service.addAdmin(vo);
         return responseDTO;
@@ -60,14 +57,14 @@ public class AdminController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editAdmin")
+    @PostMapping("/editAdmin")
     public ResponseDTO editAdmin(@RequestBody PhyAdmin vo){
         ResponseDTO responseDTO = service.editAdmin(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getAdminOtherInfo")
+    @PostMapping("/getAdminOtherInfo")
     public ResponseDTO getAdminOtherInfo(@RequestBody PhyAdmin role){
         ResponseDTO responseDTO = service.getAdminOtherInfo(role.getAdminRoleId());
         return responseDTO;
@@ -75,7 +72,7 @@ public class AdminController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/changePwd")
+    @PostMapping("/changePwd")
     public ResponseDTO changePwd(@RequestBody ChangePwdVo vo){
         ResponseDTO responseDTO = service.changePwd(vo);
         return responseDTO;

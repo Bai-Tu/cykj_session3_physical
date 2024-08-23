@@ -10,6 +10,7 @@ import com.vo.PageVo;
 import com.vo.SearchPageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,14 +28,14 @@ public class OrderListController {
 
 
     @ResponseBody
-    @RequestMapping("/getOrderListByIdInPage")
+    @PostMapping("/getOrderListByIdInPage")
     public ResponseDTO getOrderListByIdInPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getOrderListByIdInPage(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/searchOrderByIdInPage")
+    @PostMapping("/searchOrderByIdInPage")
     public ResponseDTO searchOrderByIdInPage(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.searchOrderByIdInPage(vo);
         return responseDTO;
@@ -42,7 +43,7 @@ public class OrderListController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/checkOutOrder")
+    @PostMapping("/checkOutOrder")
     public ResponseDTO checkOutOrder(@RequestBody PhyOrder vo){
         ResponseDTO responseDTO = service.checkOutOrder(vo);
         return responseDTO;
@@ -50,7 +51,7 @@ public class OrderListController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addOrder")
+    @PostMapping("/addOrder")
     public ResponseDTO addOrder(@RequestBody OrderVo vo){
         vo.setOrderNumber(RandomOrderNumber.generateOrderNumber());
         ResponseDTO responseDTO = service.addOrder(vo);

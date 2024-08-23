@@ -7,6 +7,7 @@ import com.util.ResponseDTO;
 import com.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,7 @@ public class RoleController {
     RoleService service;
 
     @ResponseBody
-    @RequestMapping("/getAllRole")
+    @PostMapping("/getAllRole")
     public ResponseDTO getAllRole(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllRole(vo);
         return responseDTO;
@@ -31,7 +32,7 @@ public class RoleController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addRole")
+    @PostMapping("/addRole")
     public ResponseDTO addRole(@RequestBody PhyRole vo){
         ResponseDTO responseDTO = service.addRole(vo);
         return responseDTO;

@@ -8,6 +8,7 @@ import com.vo.SearchPageVo;
 import com.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,14 +25,14 @@ public class DepartmentController {
     DepartmentService service;
 
     @ResponseBody
-    @RequestMapping("/getAllDepartment")
+    @PostMapping("/getAllDepartment")
     public ResponseDTO getAllDepartment(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getAllDepartment(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getDepartmentInSearch")
+    @PostMapping("/getDepartmentInSearch")
     public ResponseDTO getDepartmentInSearch(@RequestBody SearchPageVo vo){
         ResponseDTO responseDTO = service.getDepartmentInSearch(vo);
         return responseDTO;
@@ -39,7 +40,7 @@ public class DepartmentController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/switchDepartmentStatus")
+    @PostMapping("/switchDepartmentStatus")
     public ResponseDTO switchDepartmentStatus(@RequestBody PhyDepartment vo){
         ResponseDTO responseDTO = service.switchDepartmentStatus(vo);
         return responseDTO;
@@ -47,7 +48,7 @@ public class DepartmentController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/addDepartment")
+    @PostMapping("/addDepartment")
     public ResponseDTO addDepartment(@RequestBody PhyDepartment vo){
         ResponseDTO responseDTO = service.addDepartment(vo);
         return responseDTO;
@@ -55,7 +56,7 @@ public class DepartmentController {
 
     @Logable
     @ResponseBody
-    @RequestMapping("/editDepartment")
+    @PostMapping("/editDepartment")
     public ResponseDTO editDepartment(@RequestBody PhyDepartment vo){
         ResponseDTO responseDTO = service.editDepartment(vo);
         return responseDTO;

@@ -10,6 +10,7 @@ import com.vo.PageVo;
 import com.vo.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,14 +30,14 @@ public class PatPatientController {
     PatientService service;
 
     @ResponseBody
-    @RequestMapping("/patientLogin")
+    @PostMapping("/patientLogin")
     public ResponseDTO patientLogin(@RequestBody LoginVo vo){
         ResponseDTO responseDTO = service.patientLogin(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/registerPatient")
+    @PostMapping("/registerPatient")
     public ResponseDTO registerPatient(@RequestBody RegisterVo vo, HttpSession session){
         if (vo.getCode().equals(session.getAttribute("code"))){
             String encrypted = Md5.getEncrypted(vo.getPwd());
@@ -48,40 +49,40 @@ public class PatPatientController {
     }
 
     @ResponseBody
-    @RequestMapping("/updatePatient")
+    @PostMapping("/updatePatient")
     public ResponseDTO updatePatient(@RequestBody PhyPatient patient){
         ResponseDTO responseDTO = service.updatePatient(patient);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getOrderListByIdInPage")
+    @PostMapping("/getOrderListByIdInPage")
     public ResponseDTO getOrderListByIdInPage(@RequestBody PageVo vo){
         ResponseDTO responseDTO = service.getOrderListByIdInPage(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/checkOutOrder")
+    @PostMapping("/checkOutOrder")
     public ResponseDTO checkOutOrder(@RequestBody PhyOrder vo){
         ResponseDTO responseDTO = service.checkOutOrder(vo);
         return responseDTO;
     }
 
     @ResponseBody
-    @RequestMapping("/getOrderIndex")
+    @PostMapping("/getOrderIndex")
     public ResponseDTO getOrderIndex(@RequestBody PhyOrder vo){
         return service.getOrderIndex(vo);
     }
 
     @ResponseBody
-    @RequestMapping("/getOrderConclution")
+    @PostMapping("/getOrderConclution")
     public ResponseDTO getOrderConclution(@RequestBody PhyOrder vo){
         return service.getOrderConclution(vo);
     }
 
     @ResponseBody
-    @RequestMapping("/getNewInfo")
+    @PostMapping("/getNewInfo")
     public ResponseDTO getNewInfo(@RequestBody PhyPatient vo){
         ResponseDTO newInfo = service.getNewInfo(vo);
         return ResponseDTO.success(newInfo);
